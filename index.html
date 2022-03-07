@@ -21,25 +21,31 @@
                         aria-label="Generated Password"></textarea>    
                 </div>
                 <form id="passwordGeneratorForm" class="form">
-                    <label for="">Number of Characters</label>
+                    <label for="">Number of Characters
                     <input type="range" min="8" max="128" 
                     id="charAmountRange">
                     <input type="number" min="8" max="128" 
                     id="charAmountNum">
+                    </label>
 
                     <section>
-                    <label for="includedUppercase">Include Uppercase</label>
-                    <input type="checkbox" id="includedUppercase">
+                    <label for="chooseUpperCase">Choose Uppercase</label>
+                    <input type="checkbox" id="chooseUpperCase">
+                    </section>
+
+                    <section>
+                        <label for="chooseLowerCase">Choose Lowercase</label>
+                        <input type="checkbox" id="chooseLowerCase">
                     </section>
                     
                     <section>
-                    <label for="includeNumbers">Include Numbers</label>
-                    <input type="checkbox" id="includeNumbers">
+                    <label for="chooseNumbers">Choose Numbers</label>
+                    <input type="checkbox" id="chooseNumbers">
                     </section>
 
                     <section>
-                    <label for="includeSymbols">Include Symbols</label>
-                    <input type="checkbox" id="includeSymbols">
+                    <label for="chooseSymbols">Choose Symbols</label>
+                    <input type="checkbox" id="chooseSymbols">
                     </section>
                     
                 </form>
