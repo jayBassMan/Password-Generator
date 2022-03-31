@@ -1,76 +1,79 @@
+//----------------------------------------------------------------------------------------
+//tutor help:
+
+
 // Assignment Code
-//button querySelector
+// GIVEN I need a new, secure password
+// WHEN I click the button to generate a password
+// THEN I am presented with a series of prompts for password criteria
+// WHEN prompted for password criteria
+// THEN I select which criteria to include in the password
+// WHEN prompted for the length of the password
+// THEN I choose a length of at least 8 characters and no more than 128 characters
+// WHEN asked for character types to include in the password
+// THEN I confirm whether or not to include lowercase, uppercase, numeric, and/or special characters
+// WHEN I answer each prompt
+// THEN my input should be validated and at least one character type should be selected
+// WHEN all prompts are answered
+// THEN a password is generated that matches the selected criteria
+// WHEN the password is generated
+// THEN the password is either displayed in an alert or written to the page
+
 var generateBtn = document.querySelector("#generate");
+var lowerCase = "abcdefghijklmnopqrstuvwxyz";
+var upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+var numbers = "0123456789";
+var symbols = "!@#$%^&*()_+~`-=:;'[]{}";
+// Write password to the #password input
+function writePassword() {
+  var password = generatePassword();
+  var passwordText = document.querySelector("#password");
 
-// Get the element by id.
-const charAmountNum = document.getElementById('charAmountNum')
-const charAmountRange = document.getElementById('charAmountRange')
-const form = document.getElementById('passwordGeneratorForm')
-const password = document.getElementById('password')
-
-const lengthOfPassword = document.getElementById('lengthOfPassword')
-//sync  charAmountNum and charAmountRange
-charAmountNum.addEventListener('input', syncCharAmount)
-charAmountRange.addEventListener('input', syncCharAmount)
-function syncCharAmount(e) {
-    const value = e.target.value
-    charAmountNum.value = value
-    charAmountRange.value = value
-
-    value = lengthOfPassword
-    return value;
-  }
-// password values, Lowercase, Uppercase, numbers, special characters
-const values = {
-    upperCase: ["ABCDEFGHIJKLMNOPQRSTUVWXYZ"],
-    lowerCase: ["abcdefghijklmnopqrstuvwxyz"],
-    numbers: ["0123456789"],
-    symbols: ["!@#$%^&*()_+{}|[]\:;'<>?,./~'"]
+  passwordText.value = password;
 }
-    // 2. Validate the input
-    // 3. Generate password based on criteria.Generate
 function generatePassword() {
-    let charset = '' //empty string of all the chars selected
-    const chooseUpperCaseElement = document.getElementById('chooseUpperCase').checked
-    const chooseLowerCaseElement = document.getElementById('chooseUpperCase').checked
-    const chooseNumbersElement = document.getElementById('chooseNumbers').checked
-    const chooseSymbolsElement = document.getElementById('chooseSymbols').checked
-    if (chooseUpperCase + chooseLowerCase + chooseNumbers + chooseSymbols == 0) {
-        alert("Please select legth of password and criteria from boxes below")
-        return;
+  var password = "";
+  var length = prompt(
+    "Enter the length of the password you desire between 8 - 128 characters long."
+  );
+  console.log(length);
+  if (length >= 8 && length <= 128) {
+    var isLowerCase = confirm("Do you want lower case in your password");
+    var isUpperCase = confirm("Do you want Upper case in your password");
+    var isNumber = confirm("Do you want numbers in your password");
+    var isSymbols = confirm("Do you want symbols in your password?");
+    for (let i = 0; i < length; i++) {
+      console.log(isLowerCase);
+      if (isLowerCase === true && password.length < length) {
+        var position = Math.floor(Math.random() * lowerCase.length);
+        password = password + lowerCase[position];
+      }
+
+      console.log(isUpperCase);
+      if (isUpperCase === true && password.length < length) {
+        var position = Math.floor(Math.random() * upperCase.length);
+        password = password + upperCase[position];
+      }
+
+      console.log(isNumber);
+      if (isNumber === true && password.length < length) {
+        var position = Math.floor(Math.random() * numbers.length);
+        password = password + numbers[position];
+      }
+
+      console.log(isSymbols);
+      if (isSymbols === true && password.length < length) {
+        var position = Math.floor(Math.random() * symbols.length);
+        password = password + symbols[position];
+      }
     }
-    if (chooseUpperCaseElement) {
-        charset = charset + values.upperCase;
-    }
-    if (chooseLowerCaseElement) {
-        charset = charset + values.lowerCase;
-    }
-    if (chooseNumbersElement) {
-        charset = charset + values.numbers;
-    }
-    if (chooseSymbolsElement) {
-        charset = charset + values.symbols;
-    }
-    charset = charset.split('')//turn string into an array
-    // add chars to charset based on user selection
-    charPasswd = "";
-    //iterate length times getting a random characters 
-    for (let i = 0; i < charPasswd.length; i++) {
-        var index = Math.floor((Math.random() * charset.length));
-        finalResult += charset[index];
-    }
-    password.values = charPasswd
+  } else {
+    alert("Invalid entry! Please enter a number beteen 8 - 128!");
+  }
+  return password;
 }
-//addEventListener to generate button
-// 4. Display password to the page.
-generateBtn.addEventListener("click", generatePassword);
-
-
-
-
-
-
-
+// Add event listener to generate button
+generateBtn.addEventListener("click", writePassword);
 
   
 
