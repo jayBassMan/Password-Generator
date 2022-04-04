@@ -22,5 +22,5 @@ This is an Password Generator that has various prompts that ultimately generates
 
 ## Contributions
 
- Kelly Jefferies
- Phil loy
+ - Kelly Jefferies
+ - Phil loy
